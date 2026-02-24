@@ -64,6 +64,18 @@ export const translations = {
             btn_details: "VER GALERÍA",
             list: [
                 {
+                    title: "Organigrama Municipal",
+                    description: "Plataforma interactiva construida con React y Java para visualizar el organigrama y personal de la municipalidad, incluyendo reglamentos, modo oscuro y detalles de departamentos.",
+                    tags: ["React", "Java", "JavaScript"],
+                    images: [
+                        "/images/organigrama_1.png",
+                        "/images/organigrama_2.png",
+                        "/images/organigrama_3.png",
+                        "/images/organigrama_4.png"
+                    ],
+                    demoUrl: "https://orgama-react.firebaseapp.com/"
+                },
+                {
                     title: "Sistema de Nuevos Ingresos",
                     description: "Generación automática de documentación y registro centralizado de ingresos al municipio. Conectado a sistemas de contratos y dotación.",
                     tags: ["App Script", "JavaScript", "Google Suite", "Automation"],
@@ -229,6 +241,18 @@ export const translations = {
             preview: "Project Preview",
             btn_details: "VIEW GALLERY",
             list: [
+                {
+                    title: "Municipal Organization Chart",
+                    description: "Interactive platform built with React and Java to view the municipality's organizational chart and staff, including regulations, dark mode, and department details.",
+                    tags: ["React", "Java", "JavaScript"],
+                    images: [
+                        "/images/organigrama_1.png",
+                        "/images/organigrama_2.png",
+                        "/images/organigrama_3.png",
+                        "/images/organigrama_4.png"
+                    ],
+                    demoUrl: "https://orgama-react.firebaseapp.com/"
+                },
                 {
                     title: "New Entries System",
                     description: "Automatic generation of documentation and centralized registration of entries to the municipality. Connected to contract and staffing systems.",
