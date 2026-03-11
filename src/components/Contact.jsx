@@ -53,17 +53,15 @@ const Contact = () => {
                 </a>
 
                 <footer className="flex flex-col items-center gap-4 border-t border-white/10 pt-8">
-                    <div className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-                        RA
-                    </div>
+
 
                     <p className="text-gray-500 text-sm">
                         © {new Date().getFullYear()} Renato Alvarez. {t.contact.footer_rights}
                     </p>
 
-                    <div className="flex gap-6">
-                        <a href="https://github.com/RenatoLV" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors"><FaGithub size={20} /></a>
-                        <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors"><FaLinkedin size={20} /></a>
+                    <div className="flex gap-10 mt-4">
+                        <a href="https://github.com/RenatoLV" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-all hover:scale-125"><FaGithub size={32} /></a>
+                        <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-all hover:scale-125"><FaLinkedin size={32} /></a>
                     </div>
                 </footer>
             </div>
