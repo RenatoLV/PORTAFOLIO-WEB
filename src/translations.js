@@ -119,17 +119,31 @@ export const translations = {
                 },
                 {
                     title: "Sistema de Dotación",
-                    description: "Reemplazo de Excel para gestión de dotación y modificación de registros post-contrato, evitando errores de tipeo.",
+                    description: "Sistema Integral de Gestión (SIG) desarrollado como una SPA sobre Google Sheets. Incluye un backend en JavaScript con lógica de enrutamiento, un robot de tareas (Cron Jobs) para procesar cambios contractuales de forma asíncrona, un motor de validación de datos en tiempo real y un Dashboard analítico con Chart.js. Automatiza la gestión documental vinculando respaldos PDF directamente vía Google Drive API.",
                     tags: ["App Script", "JavaScript", "Google Suite", "Optimization"],
-                    images: [],
+                    images: [
+                        "/images/graficos.png",
+                        "/images/graficos2.png",
+                        "/images/graficos filtrados.png"
+                    ],
                     demoUrl: null
                 },
                 {
                     title: "Dashboard de Programas",
                     description: "Visualización interactiva de costos, personal, direcciones y dotación. Cruce de datos con formulario inteligente.",
                     tags: ["App Script", "Google Suite", "Power BI", "Data Viz"],
-                    images: [],
-                    demoUrl: null
+                    images: [
+                        "/images/PRESTACION.png",
+                        "/images/PRESTACION 1.png",
+                        "/images/PRESTACION 3.png",
+                        "/images/PRESTACION 4.png",
+                        "/images/PRESTACION 5.png",
+                        "/images/PRESTACION 6.png",
+                        "/images/PRESTACION 7.png",
+                        "/images/PRESTACION 8.png",
+                        "/images/PRESTACION 9.png"
+                    ],
+                    demoUrl: "https://script.google.com/macros/s/AKfycbzevnyQcFvLrPU7JuoJ9st1y37wFP9wlacFBFmC_vCYPfAbJApw0rmCznN8tX8umA/exec"
                 },
                 {
                     title: "Consolidado de Nóminas Python",
@@ -161,7 +175,11 @@ export const translations = {
                     title: "Sistema de Secretaría",
                     description: "Programa para no perder el correlativo y mantener el registro digital fidedigno de toda la documentación oficial.",
                     tags: ["App Script", "JavaScript", "Google Suite", "Digital Records"],
-                    images: [],
+                    images: [
+                        "/images/SECRETARIA.png",
+                        "/images/SECRETARIA 1.png",
+                        "/images/SECRETARIA 2.png"
+                    ],
                     demoUrl: "https://script.google.com/macros/s/AKfycby8eYR7m0fuIFH4FWC0aWKUE0SM4NjF0vleQI4DujGDQOU8BOMNOagNmgu23yX3wX4b-g/exec"
                 }
             ]
@@ -297,17 +315,31 @@ export const translations = {
                 },
                 {
                     title: "Staffing System",
-                    description: "Excel replacement for staffing management and post-contract record modification, avoiding typing errors.",
+                    description: "Integrated Management System (IMS) built as a SPA on Google Sheets. Includes a JavaScript backend with routing logic, a task robot (Cron Jobs) for asynchronous contract processing, a real-time data validation engine, and an analytical Dashboard with Chart.js. Automates document management by linking PDF backups directly via Google Drive API.",
                     tags: ["App Script", "JavaScript", "Google Suite", "Optimization"],
-                    images: [],
+                    images: [
+                        "/images/graficos.png",
+                        "/images/graficos2.png",
+                        "/images/graficos filtrados.png"
+                    ],
                     demoUrl: null
                 },
                 {
                     title: "Programs Dashboard",
                     description: "Interactive visualization of costs, personnel, addresses, and staffing. Data crossing with smart form.",
                     tags: ["App Script", "Google Suite", "Power BI", "Data Viz"],
-                    images: [],
-                    demoUrl: null
+                    images: [
+                        "/images/PRESTACION.png",
+                        "/images/PRESTACION 1.png",
+                        "/images/PRESTACION 3.png",
+                        "/images/PRESTACION 4.png",
+                        "/images/PRESTACION 5.png",
+                        "/images/PRESTACION 6.png",
+                        "/images/PRESTACION 7.png",
+                        "/images/PRESTACION 8.png",
+                        "/images/PRESTACION 9.png"
+                    ],
+                    demoUrl: "https://script.google.com/macros/s/AKfycbzevnyQcFvLrPU7JuoJ9st1y37wFP9wlacFBFmC_vCYPfAbJApw0rmCznN8tX8umA/exec"
                 },
                 {
                     title: "Python Payroll Consolidated",
@@ -339,7 +371,11 @@ export const translations = {
                     title: "Secretary System",
                     description: "Program to maintain correlative tracking and reliable digital record of all official documentation.",
                     tags: ["App Script", "JavaScript", "Google Suite", "Digital Records"],
-                    images: [],
+                    images: [
+                        "/images/SECRETARIA.png",
+                        "/images/SECRETARIA 1.png",
+                        "/images/SECRETARIA 2.png"
+                    ],
                     demoUrl: "https://script.google.com/macros/s/AKfycby8eYR7m0fuIFH4FWC0aWKUE0SM4NjF0vleQI4DujGDQOU8BOMNOagNmgu23yX3wX4b-g/exec"
                 }
             ]

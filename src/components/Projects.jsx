@@ -45,21 +45,31 @@ const Projects = () => {
     useEffect(() => {
         if (!isPaused && !isGalleryOpen && projects.length > 0) {
             const interval = setInterval(() => {
-                setCurrentIndex((prev) => (prev + 1) % projects.length);
-            }, 8000); // 8 seconds
+                const project = projects[currentIndex];
+                const totalItems = (project.video ? 1 : 0) + (project.images?.length || 0);
+
+                if (totalItems > 1 && currentImageIndex < totalItems - 1) {
+                    setCurrentImageIndex(prev => prev + 1);
+                } else {
+                    setCurrentIndex((prev) => (prev + 1) % projects.length);
+                    setCurrentImageIndex(0);
+                }
+            }, 5000); // 5 seconds per image/project state
 
             return () => clearInterval(interval);
         }
-    }, [isPaused, isGalleryOpen, projects.length, currentIndex]);
+    }, [isPaused, isGalleryOpen, projects.length, currentIndex, currentImageIndex]);
 
     const nextProject = () => {
         if (projects.length === 0) return;
         setCurrentIndex((prev) => (prev + 1) % projects.length);
+        setCurrentImageIndex(0);
     };
 
     const prevProject = () => {
         if (projects.length === 0) return;
         setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length);
+        setCurrentImageIndex(0);
     };
 
     const openGallery = (startIndex = 0) => {
@@ -68,14 +78,16 @@ const Projects = () => {
     };
 
     const nextImage = (e) => {
-        e.stopPropagation();
+        if (e) e.stopPropagation();
         const totalItems = (projects[currentIndex].video ? 1 : 0) + (projects[currentIndex].images?.length || 0);
+        if (totalItems === 0) return;
         setCurrentImageIndex((prev) => (prev + 1) % totalItems);
     };
 
     const prevImage = (e) => {
-        e.stopPropagation();
+        if (e) e.stopPropagation();
         const totalItems = (projects[currentIndex].video ? 1 : 0) + (projects[currentIndex].images?.length || 0);
+        if (totalItems === 0) return;
         setCurrentImageIndex((prev) => (prev - 1 + totalItems) % totalItems);
     };
 
@@ -106,32 +118,74 @@ const Projects = () => {
                             {/* Image Placeholder / Visual */}
                             <div
                                 className="w-full md:w-1/2 h-80 bg-gradient-to-br from-bg to-black border border-white/10 rounded-xl flex items-center justify-center relative overflow-hidden cursor-pointer group/image"
-                                onClick={openGallery}
+                                onMouseEnter={() => setIsPaused(true)}
+                                onMouseLeave={() => setIsPaused(false)}
                             >
-                                {projects[currentIndex].images && projects[currentIndex].images.length > 0 ? (
-                                    <>
-                                        <img
-                                            src={projects[currentIndex].images[0]}
-                                            alt={projects[currentIndex].title}
-                                            className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover/image:opacity-80 transition-opacity duration-500"
-                                        />
-                                        <div className="absolute inset-0 bg-black/40 group-hover/image:bg-black/20 transition-colors duration-500"></div>
-                                        <div className="relative z-10 flex flex-col items-center">
-                                            {projects[currentIndex].video ? (
-                                                <div className="w-16 h-16 rounded-full bg-primary/80 flex items-center justify-center mb-4 group-hover/image:scale-110 transition-transform">
-                                                    <FaPlay className="text-2xl text-white ml-1" />
-                                                </div>
-                                            ) : (
-                                                <FaImages className="text-4xl text-white mb-2 drop-shadow-lg" />
-                                            )}
-                                            <span className="text-white font-bold drop-shadow-lg">
-                                                {projects[currentIndex].video ? 'Ver Video & Fotos' : `Ver Galería (${projects[currentIndex].images.length})`}
-                                            </span>
-                                        </div>
-                                    </>
-                                ) : (
-                                    <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-                                )}
+                                <AnimatePresence mode='wait'>
+                                    {projects[currentIndex].images && projects[currentIndex].images.length > 0 ? (
+                                        <motion.div
+                                            key={`${currentIndex}-${currentImageIndex}`}
+                                            initial={{ opacity: 0, scale: 1.05 }}
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            exit={{ opacity: 0, scale: 0.95 }}
+                                            transition={{ duration: 0.5 }}
+                                            className="absolute inset-0 w-full h-full"
+                                            onClick={() => openGallery(currentImageIndex)}
+                                        >
+                                            <img
+                                                src={projects[currentIndex].video && currentImageIndex === 0
+                                                    ? projects[currentIndex].images[0] // Show first image as thumbnail for video
+                                                    : projects[currentIndex].images[projects[currentIndex].video ? currentImageIndex - 1 : currentImageIndex]
+                                                }
+                                                alt={projects[currentIndex].title}
+                                                className="w-full h-full object-cover opacity-60 group-hover/image:opacity-90 transition-opacity duration-500"
+                                            />
+                                            <div className="absolute inset-0 bg-black/30 group-hover/image:bg-black/10 transition-colors duration-500"></div>
+
+                                            {/* Subtle Progress Bar */}
+                                            <div className="absolute bottom-0 left-0 w-full h-1 bg-white/5 overflow-hidden z-20">
+                                                <motion.div
+                                                    key={`${currentIndex}-${currentImageIndex}-${isPaused}`}
+                                                    initial={{ width: 0 }}
+                                                    animate={{ width: isPaused ? '0%' : '100%' }}
+                                                    transition={{ duration: isPaused ? 0 : 5, ease: "linear" }}
+                                                    className="h-full bg-primary/60"
+                                                />
+                                            </div>
+
+                                            <div className="relative z-10 w-full h-full flex flex-col items-center justify-center pointer-events-none">
+                                                {projects[currentIndex].video && currentImageIndex === 0 ? (
+                                                    <div className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center mb-4 shadow-xl">
+                                                        <FaPlay className="text-2xl text-white ml-1" />
+                                                    </div>
+                                                ) : (
+                                                    <FaImages className="text-4xl text-white mb-2 drop-shadow-lg opacity-0 group-hover/image:opacity-100 transition-opacity" />
+                                                )}
+                                                <span className="text-white font-bold drop-shadow-lg opacity-0 group-hover/image:opacity-100 transition-opacity bg-black/40 px-3 py-1 rounded-full text-sm">
+                                                    {projects[currentIndex].video && currentImageIndex === 0 ? 'Ver Video' : `Ver Galería (${projects[currentIndex].images.length})`}
+                                                </span>
+                                            </div>
+                                        </motion.div>
+                                    ) : (
+                                        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+                                    )}
+                                </AnimatePresence>
+
+                                {/* Mini nav inside card for images */}
+                                <div className="absolute inset-0 flex items-center justify-between px-4 opacity-0 group-hover/image:opacity-100 transition-opacity z-20 pointer-events-none">
+                                    <button
+                                        onClick={(e) => { e.stopPropagation(); prevImage(); }}
+                                        className="p-2 rounded-full bg-black/50 hover:bg-primary text-white transition-colors pointer-events-auto"
+                                    >
+                                        <FaChevronLeft size={14} />
+                                    </button>
+                                    <button
+                                        onClick={(e) => { e.stopPropagation(); nextImage(); }}
+                                        className="p-2 rounded-full bg-black/50 hover:bg-primary text-white transition-colors pointer-events-auto"
+                                    >
+                                        <FaChevronRight size={14} />
+                                    </button>
+                                </div>
                             </div>
 
                             {/* Content */}
@@ -164,15 +218,15 @@ const Projects = () => {
 
                                         <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-6">
                                             <button
-                                                onClick={() => openGallery(0)}
+                                                onClick={() => openGallery(currentImageIndex)}
                                                 disabled={!projects[currentIndex].video && (!projects[currentIndex].images || projects[currentIndex].images.length === 0)}
                                                 className={`flex items-center justify-center gap-2 transition-colors group/btn ${projects[currentIndex].video || (projects[currentIndex].images && projects[currentIndex].images.length > 0)
                                                     ? 'text-white hover:text-primary cursor-pointer'
                                                     : 'text-gray-600 cursor-not-allowed'
                                                     }`}
                                             >
-                                                <span className="font-bold tracking-wider">{projects[currentIndex].video ? 'VER DEMO' : t.projects.btn_details}</span>
-                                                {projects[currentIndex].video ? <FaPlay className="text-sm group-hover/btn:scale-110 transition-transform" /> : <FaImages className="text-sm group-hover/btn:scale-110 transition-transform" />}
+                                                <span className="font-bold tracking-wider">{projects[currentIndex].video && currentImageIndex === 0 ? 'VER VIDEO' : t.projects.btn_details}</span>
+                                                {projects[currentIndex].video && currentImageIndex === 0 ? <FaPlay className="text-sm group-hover/btn:scale-110 transition-transform" /> : <FaImages className="text-sm group-hover/btn:scale-110 transition-transform" />}
                                             </button>
 
                                             {projects[currentIndex].demoUrl && (
@@ -207,7 +261,7 @@ const Projects = () => {
                                     {projects.map((_, idx) => (
                                         <div
                                             key={idx}
-                                            onClick={() => setCurrentIndex(idx)}
+                                            onClick={() => { setCurrentIndex(idx); setCurrentImageIndex(0); }}
                                             className={`h-1.5 rounded-full cursor-pointer transition-all duration-300 ${idx === currentIndex ? 'w-10 bg-primary' : 'w-3 bg-gray-600 hover:bg-gray-400'
                                                 }`}
                                         />
