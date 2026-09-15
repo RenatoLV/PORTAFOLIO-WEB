@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { FaArrowRight, FaExternalLinkAlt, FaGithub, FaTimes } from 'react-icons/fa';
+import { FaArrowRight, FaCode, FaDatabase, FaExternalLinkAlt, FaFileCsv, FaFileImage, FaGithub, FaTimes } from 'react-icons/fa';
+import { SiFirebase, SiGoogleappsscript, SiGoogledocs, SiGoogledrive, SiGooglesheets, SiJavascript, SiPandas, SiPython, SiReact, SiTailwindcss } from 'react-icons/si';
 import { getProjects } from '../data/projects';
 import { useLanguage } from '../hooks/useLanguage';
 
@@ -10,6 +11,32 @@ function ProjectFlow({ project, label }) {
       <span>{step}</span>
     </li>)}
   </ol>;
+}
+
+const technologies = {
+  JavaScript: { Icon: SiJavascript, tone: 'javascript' },
+  'Apps Script': { Icon: SiGoogleappsscript, tone: 'google' },
+  'Firebase REST': { Icon: SiFirebase, tone: 'firebase' },
+  'Firebase Hosting': { Icon: SiFirebase, tone: 'firebase' },
+  'Google Docs': { Icon: SiGoogledocs, tone: 'google' },
+  'Google Drive': { Icon: SiGoogledrive, tone: 'google' },
+  'Drive API': { Icon: SiGoogledrive, tone: 'google' },
+  'Google Sheets': { Icon: SiGooglesheets, tone: 'google' },
+  CacheService: { Icon: FaDatabase, tone: 'data' },
+  CSV: { Icon: FaFileCsv, tone: 'data' },
+  React: { Icon: SiReact, tone: 'react' },
+  'Tailwind CSS': { Icon: SiTailwindcss, tone: 'tailwind' },
+  Python: { Icon: SiPython, tone: 'python' },
+  Pandas: { Icon: SiPandas, tone: 'data' },
+  Flet: { Icon: FaCode, tone: 'code' },
+  Tesseract: { Icon: FaFileImage, tone: 'data' },
+  OpenCV: { Icon: FaFileImage, tone: 'data' },
+};
+
+function TechnologyTag({ tag }) {
+  const technology = technologies[tag] || { Icon: FaCode, tone: 'code' };
+  const { Icon, tone } = technology;
+  return <li className={`project-tech project-tech--${tone}`}><span className="project-tech-icon"><Icon aria-hidden="true" /></span><span>{tag}</span></li>;
 }
 
 function ProjectDialog({ project, labels, onClose }) {
@@ -79,7 +106,8 @@ export default function Projects() {
             <p className="project-category">{t.projects.filters[project.category]}</p>
             <h3>{project.title}</h3>
             <p>{project.summary}</p>
-            <ul className="flex flex-wrap gap-2 mt-5 mb-6">{project.tags.map(tag => <li key={tag} className="tech-tag">{tag}</li>)}</ul>
+            <p className="project-stack-label">{t.projects.technologies}</p>
+            <ul className="project-tech-list">{project.tags.map(tag => <TechnologyTag key={tag} tag={tag} />)}</ul>
             <div className="project-card-footer">
               <button onClick={() => setSelectedId(project.id)} aria-label={`${t.projects.case_action}: ${project.title}`}>{t.projects.case_action}<FaArrowRight aria-hidden="true" /></button>
               <span>{project.demoUrl || project.githubUrl ? t.projects.public : t.projects.internal}</span>

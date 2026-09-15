@@ -100,7 +100,11 @@ export const translations = {
             "Normalización y limpieza de bases de datos de personal."
           ]
         }
-      ]
+      ],
+      "location_eyebrow": "Ubicación de la experiencia",
+      "location_title": "Municipalidad de Coquimbo",
+      "location_text": "Coquimbo, Región de Coquimbo · Chile",
+      "location_action": "Abrir en OpenStreetMap"
     },
     "skills": {
       "title": "Las herramientas",
@@ -175,6 +179,7 @@ export const translations = {
       "demo": "Ver aplicación",
       "github": "Ver repositorio",
       "count": "proyectos",
+      "technologies": "Tecnologías",
       "internal": "Herramienta interna",
       "public": "Proyecto con enlace público"
     },
@@ -291,7 +296,11 @@ export const translations = {
             "Standardization and cleaning of employee databases."
           ]
         }
-      ]
+      ],
+      "location_eyebrow": "Experience location",
+      "location_title": "Municipality of Coquimbo",
+      "location_text": "Coquimbo, Coquimbo Region · Chile",
+      "location_action": "Open in OpenStreetMap"
     },
     "skills": {
       "title": "The tools",
@@ -366,6 +375,7 @@ export const translations = {
       "demo": "View application",
       "github": "View repository",
       "count": "projects",
+      "technologies": "Technologies",
       "internal": "Internal tool",
       "public": "Project with public link"
     },
