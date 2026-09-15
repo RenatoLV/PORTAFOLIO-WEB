@@ -29,13 +29,13 @@ export const translations = {
         "Integración de datos y documentos"
       ],
       "status_panel": {
-        "header": "DESARROLLO APLICADO",
+        "header": "SOLUCIONES DIGITALES",
         "org": "Municipalidad de Coquimbo",
-        "scope": "RRHH · Documentos · Datos",
+        "scope": "Procesos · Integraciones · Datos",
         "stack": "JavaScript · Apps Script · Python · Power BI",
-        "org_label": "Experiencia",
+        "org_label": "Experiencia base",
         "cases_label": "Casos de Apps Script",
-        "scope_label": "Áreas de aplicación"
+        "scope_label": "Áreas transversales"
       },
       "eyebrow": "Coquimbo, Chile · Analista Programador",
       "heading": "Del proceso manual a una solución digital.",
@@ -220,13 +220,13 @@ export const translations = {
         "Data and document integration"
       ],
       "status_panel": {
-        "header": "APPLIED DEVELOPMENT",
+        "header": "DIGITAL SOLUTIONS",
         "org": "Municipality of Coquimbo",
-        "scope": "HR · Documents · Data",
+        "scope": "Processes · Integrations · Data",
         "stack": "JavaScript · Apps Script · Python · Power BI",
-        "org_label": "Experience",
+        "org_label": "Experience base",
         "cases_label": "Apps Script case studies",
-        "scope_label": "Application areas"
+        "scope_label": "Cross-functional areas"
       },
       "eyebrow": "Coquimbo, Chile · Programmer Analyst",
       "heading": "From a manual process to a digital solution.",
