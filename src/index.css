@@ -43,7 +43,9 @@ a, button { touch-action: manipulation; }
   .action-secondary:hover { background: #e9eeec; border-color: #91a2ad; }
   .icon-button { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-width: 44px; min-height: 44px; padding: .65rem; border-radius: 7px; }
   .icon-button:hover { background: #e8edea; }
-  .tech-tag { display: inline-block; padding: .35rem .65rem; border: 1px solid var(--color-line); border-radius: 5px; color: #4a5b66; font-size: .7rem; background: #fafbf9; line-height: 1.5; }
+.tech-tag { display: inline-block; padding: .35rem .65rem; border: 1px solid var(--color-line); border-radius: 5px; color: #4a5b66; font-size: .7rem; background: #fafbf9; line-height: 1.5; }
+.skills-tech-tag { display: inline-flex; align-items: center; gap: .42rem; }
+.skills-tech-tag svg { flex: 0 0 auto; width: .9rem; height: .9rem; color: var(--color-primary); }
   .filter-button { min-height: 44px; padding: .6rem 1rem; border: 1px solid transparent; border-radius: 6px; color: var(--color-muted); font-size: .8rem; transition: background .2s, color .2s; }
   .filter-button:hover { color: var(--color-ink); background: #e7ece9; }
   .filter-active { color: white; background: var(--color-ink); }
@@ -135,8 +137,9 @@ a, button { touch-action: manipulation; }
 .skill-card + .skill-card { border-left: 1px solid var(--color-line); }
 .skill-icon { display: grid; place-items: center; background: #edf1f3; color: var(--color-primary); width: 40px; height: 40px; border-radius: 7px; margin-bottom: 1.5rem; }
 .skill-card h3 { font-size: 1.08rem; font-weight: 600; line-height: 1.5; letter-spacing: -.025em; margin-bottom: .8rem; }
-.academic-note { display: flex; gap: 1rem; padding-top: 1.5rem; font-size: .75rem; line-height: 1.8; color: var(--color-muted); }
+.academic-note { display: flex; align-items: flex-start; gap: 1rem; padding-top: 1.5rem; font-size: .75rem; line-height: 1.8; color: var(--color-muted); }
 .academic-note span { color: var(--color-ink); font-weight: 600; flex-shrink: 0; }
+.academic-note ul { display: flex; flex-wrap: wrap; gap: .5rem; }
 .experience-section { padding-top: 1.5rem; }
 .experience-list { margin-top: 2.5rem; border-top: 1px solid var(--color-line); }
 .experience-row { display: grid; grid-template-columns: 270px 1fr; gap: 4rem; padding-block: 2.5rem; border-bottom: 1px solid var(--color-line); }
@@ -218,7 +221,7 @@ a, button { touch-action: manipulation; }
   .approach-panel { padding: 1.5rem; }
   .skills-grid { grid-template-columns: 1fr; }
   .skill-card + .skill-card { border-left: 0; border-top: 1px solid var(--color-line); }
-  .academic-note { flex-direction: column; gap: .3rem; }
+  .academic-note { flex-direction: column; gap: .5rem; }
   .experience-section { padding-top: 0; }
   .experience-row { grid-template-columns: 1fr; gap: 1rem; padding-block: 2rem; }
   .contact-section { padding-top: 3.5rem; }
